@@ -69,9 +69,16 @@ int main(int argc, char** argv)
 
 	std::cout << "\n\nEvents:\n";
 
+	// Initial tick to log command events
+	game.incrementTick();
+	game.getEventLogger().logAllEvents(game.getTick());
+
 	while (game.tryUpdate())
 	{}
-	/*
+
+	std::cout << "/////////////////////////////////////////////////////////\n";
+	std::cout << "Banchmark\n";
+	std::cout << "/////////////////////////////////////////////////////////\n";
 	auto& eventLogger = game.getEventLogger();
 
 	game.setTick(1);
@@ -85,37 +92,43 @@ int main(int argc, char** argv)
 	eventLogger.logAllEvents(game.getTick());
 
 	game.setTick(2);
-	game.getEventLogger().log(2, io::UnitMoved{1, 1, 0});
-	game.getEventLogger().log(2, io::UnitMoved{2, 8, 0});
-	game.getEventLogger().log(2, io::UnitMoved{3, 0, 8});
+	eventLogger.addEvent(io::UnitMoved{1, 1, 0});
+	eventLogger.addEvent(io::UnitMoved{2, 8, 0});
+	eventLogger.addEvent(io::UnitMoved{3, 0, 8});
+	eventLogger.logAllEvents(game.getTick());
 
 	game.setTick(3);
-	game.getEventLogger().log(3, io::UnitMoved{1, 2, 0});
-	game.getEventLogger().log(3, io::UnitMoved{2, 7, 0});
-	game.getEventLogger().log(3, io::UnitMoved{3, 0, 7});
+	eventLogger.addEvent(io::UnitMoved{1, 2, 0});
+	eventLogger.addEvent(io::UnitMoved{2, 7, 0});
+	eventLogger.addEvent(io::UnitMoved{3, 0, 7});
+	eventLogger.logAllEvents(game.getTick());
 
 	game.setTick(4);
-	game.getEventLogger().log(4, io::UnitMoved{1, 3, 0});
-	game.getEventLogger().log(4, io::UnitAttacked{2, 1, 5, 0});
-	game.getEventLogger().log(4, io::UnitDied{1});
-	game.getEventLogger().log(4, io::UnitMoved{3, 0, 6});
+	eventLogger.addEvent(io::UnitMoved{1, 3, 0});
+	eventLogger.addEvent(io::UnitAttacked{2, 1, 5, 0});
+	eventLogger.addEvent(io::UnitDied{1});
+	eventLogger.addEvent(io::UnitMoved{3, 0, 6});
+	eventLogger.logAllEvents(game.getTick());
 
 	game.setTick(5);
-	game.getEventLogger().log(5, io::UnitMoved{2, 6, 0});
-	game.getEventLogger().log(5, io::UnitMoved{3, 0, 5});
+	eventLogger.addEvent(io::UnitMoved{2, 6, 0});
+	eventLogger.addEvent(io::UnitMoved{3, 0, 5});
+	eventLogger.logAllEvents(game.getTick());
 
 	game.setTick(6);
-	game.getEventLogger().log(6, io::UnitMoved{2, 5, 0});
-	game.getEventLogger().log(6, io::UnitMoved{3, 0, 4});
+	eventLogger.addEvent(io::UnitMoved{2, 5, 0});
+	eventLogger.addEvent(io::UnitMoved{3, 0, 4});
+	eventLogger.logAllEvents(game.getTick());
 
 	game.setTick(7);
-	game.getEventLogger().log(7, io::UnitAttacked{2, 3, 5, 5});
-	game.getEventLogger().log(7, io::UnitMoved{3, 0, 3});
+	eventLogger.addEvent(io::UnitAttacked{2, 3, 5, 5});
+	eventLogger.addEvent(io::UnitMoved{3, 0, 3});
+	eventLogger.logAllEvents(game.getTick());
 
 	game.setTick(8);
-	game.getEventLogger().log(8, io::UnitAttacked{2, 3, 5, 0});
-	game.getEventLogger().log(8, io::UnitDied{3});
-*/
+	eventLogger.addEvent(io::UnitAttacked{2, 3, 5, 0});
+	eventLogger.addEvent(io::UnitDied{3});
+	eventLogger.logAllEvents(game.getTick());
 
 	return 0;
 }

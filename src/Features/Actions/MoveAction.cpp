@@ -31,7 +31,7 @@ MoveAction::MoveAction(const std::shared_ptr<Unit>& actor) :
 bool MoveAction::tryExecute(const std::shared_ptr<sw::map::Map>& map)
 {
 	auto actor = m_Actor.lock();
-	if (actor == nullptr)
+	if (actor == nullptr || actor->getProperty<sw::properties::PropertyType::Health>() <= 0)
 	{
 		return false;
 	}

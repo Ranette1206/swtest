@@ -29,7 +29,7 @@ std::shared_ptr<Map> Map::create(const sw::io::CreateMap& command)
 	const auto map = std::shared_ptr<Map>(new Map(command.width, command.height));
 	if (map != nullptr)
 	{
-		game::Game::getEventLogger().addEvent(io::CreateMap{command.width, command.height});
+		sw::game::Game::getInstance().getEventLogger().addEvent(io::CreateMap{command.width, command.height});
 	}
 	return map;
 }
